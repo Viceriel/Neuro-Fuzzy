@@ -1,5 +1,6 @@
 % Linearized inverted pendulum for upward position
 clc, clear, close all;
+% PRVA ZMENA
 
 M = .5; % Cart Mass
 m = 0.2; % Pole Mass
