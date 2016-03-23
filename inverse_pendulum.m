@@ -1,8 +1,5 @@
 % Linearized inverted pendulum for upward position
 clc, clear, close all;
-% PRVA ZMENA
-% Druha zmena
-% TRETIA ZMENA
 
 M = .5; % Cart Mass
 m = 0.2; % Pole Mass
