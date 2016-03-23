@@ -1,7 +1,7 @@
 % Linearized inverted pendulum for upward position
 clc, clear, close all;
 % PRVA ZMENA
-
+% Druha zmena
 M = .5; % Cart Mass
 m = 0.2; % Pole Mass
 b = 0.1; % Friction coefficient
