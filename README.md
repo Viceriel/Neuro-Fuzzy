@@ -1,2 +1,2 @@
 # Neuro-Fuzzy
-Hello
+Neuro-Fuzzy controller for inverted pendulum
