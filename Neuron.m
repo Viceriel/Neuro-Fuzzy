@@ -47,7 +47,7 @@ classdef Neuron
             end
             
             obj.input = sum - obj.weights(i + 1);
-            obj.output = obj.Sigmoid(obj);
+            obj.output = Sigmoid(obj);
             
         end
         
