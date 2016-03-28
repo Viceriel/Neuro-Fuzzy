@@ -6,18 +6,18 @@ classdef Neuron
         output;
         error;
         weights;
-        previous_layer;
+        layer_length;
         
     end
     
     methods
        
-        function obj = Neuron(previous)
+        function obj = Neuron(size)
             
-           if isnan(previous) == false
+            if size ~= true
                
-               obj.previous_layer = previous;
-               len = length(previous) + 1;
+               obj.layer_length = size;
+               len = size + 1;
                 
                for i = 1 : len
                   
@@ -35,19 +35,27 @@ classdef Neuron
             
         end
         
-        function r = Activate(obj)
+       function r = DerivateSigmoid(obj)
+           
+            r = (exp((-1.0) * obj.input) / ((1.0+exp((-1.0) * obj.input)) * (1.0 + exp((-1.0) * obj.input)))); 
             
-            len = length(obj.previous_layer);
-            sum = 0;
+        end
+        
+        function r = Activate(obj, data)
             
-            for i = 1 : len
-                
-                sum = sum + obj.weights(i) * obj.previous_layer(i).output;
-                
-            end
+            data(end + 1) = -1;
+            obj.input = data * obj.weights';
             
-            obj.input = sum - obj.weights(i + 1);
             obj.output = Sigmoid(obj);
+            r = obj;
+            
+        end
+        
+        function r = WeightChange(obj, gamma, outputs)
+            
+            outputs(end + 1) = -1;
+            obj.weights = obj.weights + gamma * obj.error * outputs;
+            r = obj;
             
         end
         

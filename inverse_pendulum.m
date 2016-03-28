@@ -66,3 +66,29 @@ ylabel('y(i)');
 title('Pendulum Position');
 grid on;
 xlim([0 max(y_step_stairs)]);
+%%
+clear all
+clc
+
+data = [0 0; 0 1; 1 0; 1 1];
+net = Network([2 2 1], 0.2, 3);
+w1 = net.neural{3}{1}(1).weights;
+
+for i = 1 : 50000
+   
+    net = learning(net, data(1, :), 0);
+    net = learning(net, data(2, :), 1);
+    net = learning(net, data(3, :), 1);
+    net = learning(net, data(4, :), 0);
+    
+end
+
+net = run(net, data(1, :));
+a1 = net.neural{3}{1}(1).output;
+net = run(net, data(2, :));
+a2 = net.neural{3}{1}(1).output;
+net = run(net, data(3, :));
+a3 = net.neural{3}{1}(1).output;
+net = run(net, data(4, :));
+a4 = net.neural{3}{1}(1).output;
+w2 = net.neural{3}{1}(1).weights;
