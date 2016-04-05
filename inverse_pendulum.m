@@ -66,6 +66,47 @@ ylabel('y(i)');
 title('Pendulum Position');
 grid on;
 xlim([0 max(y_step_stairs)]);
+
+C = [1 0 0 0];
+w = zeros(1, time);
+
+stepStart = 3;
+stepStop = 6;
+amplitude = 3;
+w((y_step_stairs>=stepStart)&(y_step_stairs<=stepStop)) = amplitude;
+I = eye(size(F));
+
+N = 1/(C*((I-(F-G*K))^(-1))*G);
+
+q = zeros(size(A), time+1);
+q(:, 1) = [3, 6, 9, 7]';
+u_w = zeros(4, time);
+y_w = zeros(2, time);
+
+for i = 1:time
+    u_w(:, i) = -K*q(:, i)+N*w(1, i);
+    q(:, i+1) = Fu*q(:, i)+G*N*w(1, i);
+    y_w(:, i) = C*q(:, i);
+end
+
+h = figure;
+set(h, 'NumberTitle', 'off', ...
+       'Name', 'Inverted Pendulum');
+   
+[y_step_stairs, y_stairs] = stairs(0:time-1, y_w(1, :));
+y_step_stairs = delta*y_step_stairs;
+stairs(y_step_stairs, y_stairs);
+xlabel('t[s]');
+ylabel('y(i)');
+title('Pendulum Position');
+grid on;
+hold on;
+xlim([0 max(y_step_stairs)]);
+
+[y_step_stairs, y_stairs] = stairs(0:time-1, w(:));
+y_step_stairs = delta*y_step_stairs;
+stairs(y_step_stairs, y_stairs, 'r');
+legend('Cart Position', 'Reference trajectory');
 %%
 clear all
 clc
