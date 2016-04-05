@@ -1,0 +1,53 @@
+[System]
+Name='TSK'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='error'
+Range=[0 1]
+NumMFs=3
+MF1='zero':'trimf',[-0.5 0 0.5]
+MF2='small':'trimf',[0 0.5 1]
+MF3='big':'trimf',[0.5 1 1.5]
+
+[Input2]
+Name='deltaerror'
+Range=[0 1]
+NumMFs=3
+MF1='zero':'trimf',[-0.5 0 0.5]
+MF2='small':'trimf',[0 0.5 1]
+MF3='big':'trimf',[0.5 1 1.5]
+
+[Output1]
+Name='output1'
+Range=[0 1]
+NumMFs=9
+MF1='1Z':'constant',[0.001]
+MF2='2Z':'constant',[0.05]
+MF3='3Z':'constant',[0.1]
+MF4='1S':'constant',[0.6]
+MF5='2S':'constant',[0.4]
+MF6='3S':'constant',[0.6]
+MF7='1B':'constant',[1]
+MF8='2B':'constant',[0.8]
+MF9='3B':'constant',[1]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+1 3, 3 (1) : 1
+2 1, 4 (1) : 1
+2 2, 5 (1) : 1
+2 3, 6 (1) : 1
+3 1, 7 (1) : 1
+3 2, 8 (1) : 1
+3 3, 9 (1) : 1

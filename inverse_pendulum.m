@@ -74,12 +74,25 @@ data = [0 0; 0 1; 1 0; 1 1];
 net = Network([2 2 1], 0.2, 3);
 w1 = net.neural{3}{1}(1).weights;
 
+controller = readfis('TSK');
+delta = 0;
+
 for i = 1 : 50000
    
+    error = 0;
     net = learning(net, data(1, :), 0);
+    error = error + abs(net.neural{3}{1}.error);
     net = learning(net, data(2, :), 1);
+    error = error + abs(net.neural{3}{1}.error);
     net = learning(net, data(3, :), 1);
+    error = error + abs(net.neural{3}{1}.error);
     net = learning(net, data(4, :), 0);
+    error = error + abs(net.neural{3}{1}.error);
+    
+    error = error / 4;
+    delta = abs(error - delta);
+    net.gamma = evalfis([error delta], controller);
+    delta = error;
     
 end
 
