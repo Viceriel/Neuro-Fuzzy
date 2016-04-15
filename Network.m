@@ -76,6 +76,7 @@ classdef Network
             for i = 1 : obj.size(end)
                
                 delta = answers(i) - obj.neural{end}{1}(i).output;
+                obj.neural{end}{1}(i).err = answers(i) - obj.neural{end}{1}(i).output;
                 delta = delta * DerivateSigmoid(obj.neural{end}{1}(i));
                 obj.neural{end}{1}(i).error = delta;
                 

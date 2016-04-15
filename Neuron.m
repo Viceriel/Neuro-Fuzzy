@@ -5,6 +5,7 @@ classdef Neuron
         input;
         output;
         error;
+        err;
         weights;
         layer_length;
         
