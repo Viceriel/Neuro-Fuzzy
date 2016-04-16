@@ -1,5 +1,9 @@
 function [ net ] = train( net, dataset, cycles )
 %Training procedure of neural network
+%net neural network
+%dataset data used for training
+%number of training epochs
+%output net- trained neural network
     
     controller = readfis('TSK');
     lengt = length(dataset);

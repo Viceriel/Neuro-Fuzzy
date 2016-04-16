@@ -1,5 +1,13 @@
 function [ y_n, u_n ] = test( net, F, G, C, w, norm )
-%   Test procedure of neural network
+%Test procedure of neural network
+%net neural network
+%F matix of system dynamic
+%G matrix of inputs
+%C matrix of outputs
+%w control vector
+%norm norm coeficients for network
+%output y_n- output of system
+%output u_n
 
     q = zeros(size(F, 1), 501);
     q(:, 1) = [3, 6, 9, 7]';

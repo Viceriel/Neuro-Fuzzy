@@ -7,6 +7,11 @@ function [ F, G, C, K, delta ] = pendulum( M, m, b, I, g, l )
 %I Moment of Inertia
 %g Gravity Acceleration
 %l Pole Length
+%output F- matrix of system dynamic
+%output G- matrix of inputs
+%output C- matrix of outputs
+%output K- feedback gain
+%output delata- periode
 
     p = I*(M+m)+M*m*l^2; % Denominator in matrices A and B
 

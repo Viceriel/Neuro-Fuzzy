@@ -1,5 +1,12 @@
 function [ dataset, norm ] = createDataset(F, G, C, K, delta)
-% Creating a dataset for neural network trainning
+%Creating a dataset for neural network trainning
+%F matrix of system dynamic
+%G matrix of inputs
+%C matrix of outputs
+%K feedback gain
+%delta periode
+%output dataset- created dataset
+%output norm- norm coeficients for neural network
 
     dataset=[];
     I = eye(size(F));
