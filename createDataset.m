@@ -1,4 +1,4 @@
-function [ dataset, norm ] = createDataset(F, G, C, K, delta)
+function [ dataset, norm ] = createDataset(F, G, C, K, delta, optional)
 %Creating a dataset for neural network trainning
 %F matrix of system dynamic
 %G matrix of inputs
@@ -68,21 +68,29 @@ function [ dataset, norm ] = createDataset(F, G, C, K, delta)
         
     end
     
-    norm(1) = max(max(dataset(1, :)), -min(dataset(1, :)));
-    norm(2) = max(max(dataset(2, :)), -min(dataset(2, :)));
-    norm(3) = max(max(dataset(3, :)), -min(dataset(3, :)));
-    norm(4) = max(max(dataset(4, :)), -min(dataset(4, :)));
-    norm(5) = max(max(dataset(5, :)), -min(dataset(5, :)));
-    norm(6) = max(max(dataset(6, :)), -min(dataset(6, :)));
-    norm(7) = max(max(dataset(7, :)), -min(dataset(7, :)));
+    if optional == 1
+        
+        norm(1) = max(max(dataset(1, :)), -min(dataset(1, :)));
+        norm(2) = max(max(dataset(2, :)), -min(dataset(2, :)));
+        norm(3) = max(max(dataset(3, :)), -min(dataset(3, :)));
+        norm(4) = max(max(dataset(4, :)), -min(dataset(4, :)));
+        norm(5) = max(max(dataset(5, :)), -min(dataset(5, :)));
+        norm(6) = max(max(dataset(6, :)), -min(dataset(6, :)));
+        norm(7) = max(max(dataset(7, :)), -min(dataset(7, :)));
     
-    dataset(1, :) = (dataset(1, :) / (max(max(dataset(1, :)), -min(dataset(1, :)))) + 1) / 2;
-    dataset(2, :) = (dataset(2, :) / (max(max(dataset(2, :)), -min(dataset(2, :)))) + 1) / 2;
-    dataset(3, :) = (dataset(3, :) / (max(max(dataset(3, :)), -min(dataset(3, :)))) + 1) / 2;
-    dataset(4, :) = (dataset(4, :) / (max(max(dataset(4, :)), -min(dataset(4, :)))) + 1) / 2;
-    dataset(5, :) = (dataset(5, :) / (max(max(dataset(5, :)), -min(dataset(5, :)))) + 1) / 2;
-    dataset(6, :) = (dataset(6, :) / (max(max(dataset(6, :)), -min(dataset(6, :)))) + 1) / 2;
-    dataset(7, :) = (dataset(7, :) / (max(max(dataset(7, :)), -min(dataset(7, :)))) + 1) / 2;
+        dataset(1, :) = (dataset(1, :) / (max(max(dataset(1, :)), -min(dataset(1, :)))) + 1) / 2;
+        dataset(2, :) = (dataset(2, :) / (max(max(dataset(2, :)), -min(dataset(2, :)))) + 1) / 2;
+        dataset(3, :) = (dataset(3, :) / (max(max(dataset(3, :)), -min(dataset(3, :)))) + 1) / 2;
+        dataset(4, :) = (dataset(4, :) / (max(max(dataset(4, :)), -min(dataset(4, :)))) + 1) / 2;
+        dataset(5, :) = (dataset(5, :) / (max(max(dataset(5, :)), -min(dataset(5, :)))) + 1) / 2;
+        dataset(6, :) = (dataset(6, :) / (max(max(dataset(6, :)), -min(dataset(6, :)))) + 1) / 2;
+        dataset(7, :) = (dataset(7, :) / (max(max(dataset(7, :)), -min(dataset(7, :)))) + 1) / 2;
+        
+    else
+        
+        norm = 0;
+        
+    end
     
 end
 

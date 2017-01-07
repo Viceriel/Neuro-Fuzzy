@@ -10,7 +10,7 @@ function [ y_n, u_n ] = test( net, F, G, C, w, norm )
 %output u_n
 
     q = zeros(size(F, 1), 501);
-    q(:, 1) = [3, 6, 9, 7]';
+    q(:, 1) = [1, 2, 3, 4]';
     u_n = zeros(4, 500);
     y_n = zeros(2, 500);
     len = length(w);
@@ -21,8 +21,9 @@ function [ y_n, u_n ] = test( net, F, G, C, w, norm )
             y_n(1, i) = C(1, :) * q(:, i);
             y_n(2, i) = C(2, :) * q(:, i);
             
-            net = run(net,[(((w(i) - q(1, i)) / norm(1)) + 1) / 2, ((-q(3,i) / norm(2)) + 1) / 2, ((q(1,i) / norm(3)) + 1) / 2, ((q(2,i) / norm(4)) + 1) / 2, ((q(3,i) / norm(5)) + 1) / 2, ((q(4,i) / norm(6)) + 1) / 2]);
-            u_n(1, i) = net.neural{3}{1}(1).output * 400 - 200;
+            dat = [w(i) - q(1, i), -q(3,i), q(1,i), q(2,i), q(3,i), q(4,i)];
+            net = Run(net, dat);
+            u_n(1, i) = net.neural{3}{1}(1).input;
             
             if u_n(1, i) > u_limit
             

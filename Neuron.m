@@ -45,6 +45,7 @@ classdef Neuron
         function r = Activate(obj, data)
             
             data(end + 1) = -1;
+            w = obj.weights;
             obj.input = data * obj.weights';
             
             obj.output = Sigmoid(obj);
